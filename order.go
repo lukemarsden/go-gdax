@@ -5,19 +5,19 @@ import (
 )
 
 type Order struct {
-	Type      string  `json:"type"`
-	Size      float64 `json:"size,string,omitempty"`
-	Side      string  `json:"side"`
-	ProductId string  `json:"product_id"`
-	ClientOID string  `json:"client_oid,omitempty"`
-	Stp       string  `json:"stp,omitempty"`
+	Type      string `json:"type"`
+	Size      string `json:"size,omitempty"`
+	Side      string `json:"side"`
+	ProductId string `json:"product_id"`
+	ClientOID string `json:"client_oid,omitempty"`
+	Stp       string `json:"stp,omitempty"`
 	// Limit Order
-	Price       float64 `json:"price,string,omitempty"`
-	TimeInForce string  `json:"time_in_force,omitempty"`
-	PostOnly    bool    `json:"post_only,omitempty"`
-	CancelAfter string  `json:"cancel_after,omitempty"`
+	Price       string `json:"price,omitempty"`
+	TimeInForce string `json:"time_in_force,omitempty"`
+	PostOnly    bool   `json:"post_only,omitempty"`
+	CancelAfter string `json:"cancel_after,omitempty"`
 	// Market Order
-	Funds float64 `json:"funds,string,omitempty"`
+	Funds string `json:"funds,omitempty"`
 	// Response Fields
 	Id            string  `json:"id"`
 	Status        string  `json:"status,omitempty"`
