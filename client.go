@@ -94,9 +94,13 @@ func (c *Client) Request(method string, url string,
 	}
 
 	if result != nil {
-		decoder := json.NewDecoder(res.Body)
-		if err = decoder.Decode(result); err != nil {
-			return res, err
+		body := new(bytes.Buffer)
+		body.ReadFrom(res.Body)
+		byt := body.Bytes()
+
+		err = json.Unmarshal(byt, result)
+		if err != nil {
+			return res, fmt.Errorf("error decoding %s: %s", string(byt), err)
 		}
 	}
 
