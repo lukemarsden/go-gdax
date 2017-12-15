@@ -93,8 +93,8 @@ func (e *BookEntry) UnmarshalJSON(data []byte) error {
 	}
 
 	*e = BookEntry{
-		Price: price,
-		Size:  size,
+		Price: priceString,
+		Size:  sizeString,
 	}
 
 	var stringOrderId string
