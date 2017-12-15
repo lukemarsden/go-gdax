@@ -92,34 +92,18 @@ func (e *BookEntry) UnmarshalJSON(data []byte) error {
 		return errors.New("Expected string")
 	}
 
-	price, err := strconv.ParseFloat(priceString, 32)
-	if err != nil {
-		return err
-	}
-
-	size, err := strconv.ParseFloat(sizeString, 32)
-	if err != nil {
-		return err
-	}
-
 	*e = BookEntry{
-		Price: price,
-		Size:  size,
+		Price: priceString,
+		Size:  sizeString,
 	}
 
 	var stringOrderId string
-	numberOfOrdersFloat, ok := entry[2].(string)
+	// Try to see if it's a string
+	stringOrderId, ok = entry[2].(string)
 	if !ok {
-		// Try to see if it's a string
-		stringOrderId, ok = entry[2].(string)
-		if !ok {
-			return errors.New("Could not parse 3rd column, tried float and string")
-		}
-		e.OrderId = stringOrderId
-
-	} else {
-		e.NumberOfOrders = int(numberOfOrdersFloat)
+		return errors.New("Could not parse 3rd column, tried string")
 	}
+	e.OrderId = stringOrderId
 
 	return nil
 }
@@ -161,7 +145,7 @@ func (e *HistoricRate) UnmarshalJSON(data []byte) error {
 		return errors.New("Expected string")
 	}
 
-	timeInt, err := strconv.Atoi(timeString)
+	timeInt, err := strconv.ParseInt(timeString, 10, 64)
 	if err != nil {
 		return err
 	}
