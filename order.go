@@ -24,9 +24,9 @@ type Order struct {
 	Settled       bool   `json:"settled,omitempty"`
 	DoneReason    string `json:"done_reason,omitempty"`
 	CreatedAt     Time   `json:"created_at,string,omitempty"`
-	FillFees      string `json:"fill_fees,string,omitempty"`
-	FilledSize    string `json:"filled_size,string,omitempty"`
-	ExecutedValue string `json:"executed_value,string,omitempty"`
+	FillFees      string `json:"fill_fees,omitempty"`
+	FilledSize    string `json:"filled_size,omitempty"`
+	ExecutedValue string `json:"executed_value,omitempty"`
 }
 
 type ListOrdersParams struct {

@@ -13,25 +13,25 @@ type Product struct {
 	Id             string `json:"id"`
 	BaseCurrency   string `json:"base_currency"`
 	QuoteCurrency  string `json:"quote_currency"`
-	BaseMinSize    string `json:"base_min_size,string"`
-	BaseMaxSize    string `json:"base_max_size,string"`
-	QuoteIncrement string `json:"quote_increment,string"`
+	BaseMinSize    string `json:"base_min_size"`
+	BaseMaxSize    string `json:"base_max_size"`
+	QuoteIncrement string `json:"quote_increment"`
 }
 
 type Ticker struct {
 	TradeId int    `json:"trade_id,number"`
-	Price   string `json:"price,string"`
-	Size    string `json:"size,string"`
+	Price   string `json:"price"`
+	Size    string `json:"size"`
 	Time    Time   `json:"time,string"`
-	Bid     string `json:"bid,string"`
-	Ask     string `json:"ask,string"`
-	Volume  string `json:"volume,string"`
+	Bid     string `json:"bid"`
+	Ask     string `json:"ask"`
+	Volume  string `json:"volume"`
 }
 
 type Trade struct {
 	TradeId int    `json:"trade_id,number"`
-	Price   string `json:"price,string"`
-	Size    string `json:"size,string"`
+	Price   string `json:"price"`
+	Size    string `json:"size"`
 	Time    Time   `json:"time,string"`
 	Side    string `json:"side"`
 }
@@ -46,10 +46,10 @@ type HistoricRate struct {
 }
 
 type Stats struct {
-	Low    string `json:"low,string"`
-	High   string `json:"high,string"`
-	Open   string `json:"open,string"`
-	Volume string `json:"volume,string"`
+	Low    string `json:"low"`
+	High   string `json:"high"`
+	Open   string `json:"open"`
+	Volume string `json:"volume"`
 }
 
 type BookEntry struct {

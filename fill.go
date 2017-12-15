@@ -7,11 +7,11 @@ import (
 type Fill struct {
 	TradeId   int    `json:"trade_id,int"`
 	ProductId string `json:"product_id"`
-	Price     string `json:"price,string"`
-	Size      string `json:"size,string"`
+	Price     string `json:"price"`
+	Size      string `json:"size"`
 	FillId    string `json:"order_id"`
 	CreatedAt Time   `json:"created_at,string"`
-	Fee       string `json:"fee,string"`
+	Fee       string `json:"fee"`
 	Settled   bool   `json:"settled"`
 	Side      string `json:"side"`
 	Liquidity string `json:"liquidity"`

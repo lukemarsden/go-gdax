@@ -7,7 +7,7 @@ import (
 type Currency struct {
 	Id      string `json:"id"`
 	Name    string `json:"name"`
-	MinSize string `json:"min_size,string"`
+	MinSize string `json:"min_size"`
 }
 
 func (c *Client) GetCurrencies() ([]Currency, error) {

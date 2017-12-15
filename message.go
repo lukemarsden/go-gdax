@@ -10,24 +10,24 @@ type Message struct {
 	MakerOrderId  string           `json:"maker_order_id"`
 	TakerOrderId  string           `json:"taker_order_id"`
 	Time          Time             `json:"time,string"`
-	RemainingSize string           `json:"remaining_size,string"`
-	NewSize       string           `json:"new_size,string"`
-	OldSize       string           `json:"old_size,string"`
-	Size          string           `json:"size,string"`
-	Price         string           `json:"price,string"`
+	RemainingSize string           `json:"remaining_size"`
+	NewSize       string           `json:"new_size"`
+	OldSize       string           `json:"old_size"`
+	Size          string           `json:"size"`
+	Price         string           `json:"price"`
 	Side          string           `json:"side"`
 	Reason        string           `json:"reason"`
 	OrderType     string           `json:"order_type"`
-	Funds         string           `json:"funds,string"`
-	NewFunds      string           `json:"new_funds,string"`
-	OldFunds      string           `json:"old_funds,string"`
+	Funds         string           `json:"funds"`
+	NewFunds      string           `json:"new_funds"`
+	OldFunds      string           `json:"old_funds"`
 	Message       string           `json:"message"`
 	Bids          [][]string       `json:"bids,omitempty"`
 	Asks          [][]string       `json:"asks,omitempty"`
 	Changes       [][]string       `json:"changes,omitempty"`
-	LastSize      string           `json:"last_size,string"`
-	BestBid       string           `json:"best_bid,string"`
-	BestAsk       string           `json:"best_ask,string"`
+	LastSize      string           `json:"last_size"`
+	BestBid       string           `json:"best_bid"`
+	BestAsk       string           `json:"best_ask"`
 	Channels      []MessageChannel `json:"channels"`
 }
 
