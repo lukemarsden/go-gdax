@@ -10,51 +10,51 @@ import (
 )
 
 type Product struct {
-	Id             string  `json:"id"`
-	BaseCurrency   string  `json:"base_currency"`
-	QuoteCurrency  string  `json:"quote_currency"`
-	BaseMinSize    float64 `json:"base_min_size,string"`
-	BaseMaxSize    float64 `json:"base_max_size,string"`
-	QuoteIncrement float64 `json:"quote_increment,string"`
+	Id             string `json:"id"`
+	BaseCurrency   string `json:"base_currency"`
+	QuoteCurrency  string `json:"quote_currency"`
+	BaseMinSize    string `json:"base_min_size,string"`
+	BaseMaxSize    string `json:"base_max_size,string"`
+	QuoteIncrement string `json:"quote_increment,string"`
 }
 
 type Ticker struct {
-	TradeId int     `json:"trade_id,number"`
-	Price   float64 `json:"price,string"`
-	Size    float64 `json:"size,string"`
-	Time    Time    `json:"time,string"`
-	Bid     float64 `json:"bid,string"`
-	Ask     float64 `json:"ask,string"`
-	Volume  float64 `json:"volume,string"`
+	TradeId int    `json:"trade_id,number"`
+	Price   string `json:"price,string"`
+	Size    string `json:"size,string"`
+	Time    Time   `json:"time,string"`
+	Bid     string `json:"bid,string"`
+	Ask     string `json:"ask,string"`
+	Volume  string `json:"volume,string"`
 }
 
 type Trade struct {
-	TradeId int     `json:"trade_id,number"`
-	Price   float64 `json:"price,string"`
-	Size    float64 `json:"size,string"`
-	Time    Time    `json:"time,string"`
-	Side    string  `json:"side"`
+	TradeId int    `json:"trade_id,number"`
+	Price   string `json:"price,string"`
+	Size    string `json:"size,string"`
+	Time    Time   `json:"time,string"`
+	Side    string `json:"side"`
 }
 
 type HistoricRate struct {
 	Time   time.Time
-	Low    float64
-	High   float64
-	Open   float64
-	Close  float64
-	Volume float64
+	Low    string
+	High   string
+	Open   string
+	Close  string
+	Volume string
 }
 
 type Stats struct {
-	Low    float64 `json:"low,string"`
-	High   float64 `json:"high,string"`
-	Open   float64 `json:"open,string"`
-	Volume float64 `json:"volume,string"`
+	Low    string `json:"low,string"`
+	High   string `json:"high,string"`
+	Open   string `json:"open,string"`
+	Volume string `json:"volume,string"`
 }
 
 type BookEntry struct {
-	Price          float64
-	Size           float64
+	Price          string
+	Size           string
 	NumberOfOrders int
 	OrderId        string
 }
@@ -108,7 +108,7 @@ func (e *BookEntry) UnmarshalJSON(data []byte) error {
 	}
 
 	var stringOrderId string
-	numberOfOrdersFloat, ok := entry[2].(float64)
+	numberOfOrdersFloat, ok := entry[2].(string)
 	if !ok {
 		// Try to see if it's a string
 		stringOrderId, ok = entry[2].(string)
@@ -131,43 +131,47 @@ func (e *HistoricRate) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	timeFloat, ok := entry[0].(float64)
+	timeString, ok := entry[0].(string)
 	if !ok {
-		return errors.New("Expected float")
+		return errors.New("Expected string")
 	}
 
-	lowFloat, ok := entry[1].(float64)
+	lowString, ok := entry[1].(string)
 	if !ok {
-		return errors.New("Expected float")
+		return errors.New("Expected string")
 	}
 
-	highFloat, ok := entry[2].(float64)
+	highString, ok := entry[2].(string)
 	if !ok {
-		return errors.New("Expected float")
+		return errors.New("Expected string")
 	}
 
-	openFloat, ok := entry[3].(float64)
+	openString, ok := entry[3].(string)
 	if !ok {
-		return errors.New("Expected float")
+		return errors.New("Expected string")
 	}
 
-	closeFloat, ok := entry[4].(float64)
+	closeString, ok := entry[4].(string)
 	if !ok {
-		return errors.New("Expected float")
+		return errors.New("Expected string")
 	}
 
-	volumeFloat, ok := entry[5].(float64)
+	volumeString, ok := entry[5].(string)
 	if !ok {
-		return errors.New("Expected float")
+		return errors.New("Expected string")
 	}
 
+	timeInt, err := strconv.Atoi(timeString)
+	if err != nil {
+		return err
+	}
 	*e = HistoricRate{
-		Time:   time.Unix(int64(timeFloat), 0),
-		Low:    lowFloat,
-		High:   highFloat,
-		Open:   openFloat,
-		Close:  closeFloat,
-		Volume: volumeFloat,
+		Time:   time.Unix(timeInt, 0),
+		Low:    lowString,
+		High:   highString,
+		Open:   openString,
+		Close:  closeString,
+		Volume: volumeString,
 	}
 
 	return nil

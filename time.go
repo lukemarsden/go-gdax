@@ -7,8 +7,8 @@ import (
 )
 
 type ServerTime struct {
-	ISO   string  `json:"iso"`
-	Epoch float64 `json:"epoch,number"`
+	ISO   string `json:"iso"`
+	Epoch string `json:"epoch,number"`
 }
 
 func (c *Client) GetTime() (ServerTime, error) {
