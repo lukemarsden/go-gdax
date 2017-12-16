@@ -37,6 +37,23 @@ func NewClient(secret, key, passphrase string) *Client {
 
 func (c *Client) Request(method string, url string,
 	params, result interface{}) (res *http.Response, err error) {
+
+	// TODO log API request time?
+
+	f, err := os.OpenFile("request.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		return nil, err
+	}
+	if _, err := f.Write([]byte(fmt.Sprintf(
+		"%s %s %s %+v\n", time.Now(), method, url, params,
+	),
+	)); err != nil {
+		return nil, err
+	}
+	if err := f.Close(); err != nil {
+		return nil, err
+	}
+
 	var data []byte
 	body := bytes.NewReader(make([]byte, 0))
 
