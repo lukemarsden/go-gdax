@@ -38,11 +38,11 @@ type Trade struct {
 
 type HistoricRate struct {
 	Time   time.Time
-	Low    string
-	High   string
-	Open   string
-	Close  string
-	Volume string
+	Low    float64
+	High   float64
+	Open   float64
+	Close  float64
+	Volume float64
 }
 
 type Stats struct {
@@ -120,47 +120,43 @@ func (e *HistoricRate) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	timeString, ok := entry[0].(string)
+	timeFloat, ok := entry[0].(float64)
 	if !ok {
-		return errors.New("Expected string")
+		return errors.New("Expected float")
 	}
 
-	lowString, ok := entry[1].(string)
+	lowFloat, ok := entry[1].(float64)
 	if !ok {
-		return errors.New("Expected string")
+		return errors.New("Expected float")
 	}
 
-	highString, ok := entry[2].(string)
+	highFloat, ok := entry[2].(float64)
 	if !ok {
-		return errors.New("Expected string")
+		return errors.New("Expected float")
 	}
 
-	openString, ok := entry[3].(string)
+	openFloat, ok := entry[3].(float64)
 	if !ok {
-		return errors.New("Expected string")
+		return errors.New("Expected float")
 	}
 
-	closeString, ok := entry[4].(string)
+	closeFloat, ok := entry[4].(float64)
 	if !ok {
-		return errors.New("Expected string")
+		return errors.New("Expected float")
 	}
 
-	volumeString, ok := entry[5].(string)
+	volumeFloat, ok := entry[5].(float64)
 	if !ok {
-		return errors.New("Expected string")
+		return errors.New("Expected float")
 	}
 
-	timeInt, err := strconv.ParseInt(timeString, 10, 64)
-	if err != nil {
-		return err
-	}
 	*e = HistoricRate{
-		Time:   time.Unix(timeInt, 0),
-		Low:    lowString,
-		High:   highString,
-		Open:   openString,
-		Close:  closeString,
-		Volume: volumeString,
+		Time:   time.Unix(int64(timeFloat), 0),
+		Low:    lowFloat,
+		High:   highFloat,
+		Open:   openFloat,
+		Close:  closeFloat,
+		Volume: volumeFloat,
 	}
 
 	return nil
